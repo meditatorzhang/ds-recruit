@@ -98,7 +98,7 @@ WORKDIR /srv
 思考
 ----
 1. 准备的单元测试类（MyGreeterTest）需要改进
-2. 原测试方法（test_greeting）只测试是否有字符串显示，未测试字符串的内容是否正确。现增加此部分，测试时间为边界值（0，6，12，18），代码如下：
+  - 原测试方法（test_greeting）只测试是否有字符串显示，未测试字符串的内容是否正确。现增加此部分，测试时间为边界值（0，6，12，18），代码如下：
 ```
 $this->assertTrue(
     strcmp($this->greeter->greeting(0), 'Good evening') === 0
@@ -115,6 +115,15 @@ $this->assertTrue(
 $this->assertTrue(
     strcmp($this->greeter->greeting(18), 'Good evening') === 0
 );
+```
+
+  - 测试类命名空间使用不规范。文件头部应加上命名空间说明，没有此部分代码可以运行的原因是此文件是测试文件，未被其它文件引用，所以不会曝露问题。代码如下：
+```
+<?php
+namespace Tests\Src;        // 增加部分
+
+use PHPUnit\Framework\TestCase;
+...
 ```
 
   - 测试结果为：
